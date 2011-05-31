@@ -4,6 +4,16 @@
 <br/>
 <% end %>	
 YOU ARE LOGGED IN MY FRIEND
-	
+<br/>
 <%= link_to "New Seed", :controller => :seeds, :action => :new %>
-<%= link_to "Logout", :action => :logout %>
+<br/>
+<%= link_to "Logout", :action => :logout %> <br/>
+
+------------------ <br/>
+<% @seeds.each do |s| %>
+	
+	<b><%= s.title %></b> <br/>
+	<%= s.description %><br/>
+	<%= s.content %> <br/>
+	------------------ <br/>
+<% end %>

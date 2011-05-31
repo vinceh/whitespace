@@ -29,6 +29,8 @@ class AdminsController < ApplicationController
   end
   
   def controlpanel
+  	
+  	@seeds = Seed.all
   end
   
   protected
