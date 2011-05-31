@@ -1,1 +1,9 @@
+
+<% if flash[:message] %>
+<%= flash[:message] %>
+<br/>
+<% end %>	
 YOU ARE LOGGED IN MY FRIEND
+	
+<%= link_to "New Seed", :controller => :seeds, :action => :new %>
+<%= link_to "Logout", :action => :logout %>

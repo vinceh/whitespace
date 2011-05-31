@@ -1,0 +1,18 @@
+<% form_for @seed, :url => { :action => form_action } do |f| %>
+		<legend>New Seed</legend>
+		<ul>
+			<li>
+				<%= f.label :title, "Title:"%>
+				<%= f.text_field :title %>
+			</li>
+			<li>
+				<%= f.label :description, "Description:"%>
+				<%= f.text_field :description %>
+			</li>
+			<li>
+				<%= f.label :content, "Content:"%>
+				<%= f.text_field :content %>
+			</li>
+		</ul>
+    <p><%=f.submit submit%></p>
+<% end %>
