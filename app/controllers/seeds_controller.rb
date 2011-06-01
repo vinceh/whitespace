@@ -8,6 +8,7 @@ class SeedsController < ApplicationController
   	
   	if request.post?
   		@seed = Seed.new(params[:seed])
+  		
   		if @seed.save
   			flash[:message] = "Seed successfully created"
   			redirect_to :controller => :admins, :action => :controlpanel

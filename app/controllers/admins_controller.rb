@@ -36,8 +36,6 @@ class AdminsController < ApplicationController
   protected
   
   def check_password(admin, password)
-  	puts "FGSDJGIDFJDIAF"
-  	puts Admin.encrypt(password, admin.salt)
   	return admin.hashed_password == Admin.encrypt(password, admin.salt)
   end
 end

@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(:version => 20110530224421) do
   create_table "seeds", :force => true do |t|
     t.string   "title",       :default => ""
     t.string   "description", :default => ""
-    t.string   "content",     :default => "", :null => false
-    t.string   "type",        :default => "", :null => false
+    t.string   "content",    	              :null => false
+    t.string   "mediatype",        	          :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

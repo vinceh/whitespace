@@ -13,6 +13,10 @@
 				<%= f.label :content, "Content:"%>
 				<%= f.text_field :content %>
 			</li>
+			<li>
+				<%= f.label :mediatype, "Type:"%>
+				<%= f.select :mediatype, getMediaTypes().collect {|t| [t, t]} %>
+			</li>
 		</ul>
     <p><%=f.submit submit%></p>
 <% end %>

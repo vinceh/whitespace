@@ -5,7 +5,7 @@ class CreateSeeds < ActiveRecord::Migration
 	  t.string		"title",		:default => ""
 	  t.string		"description",	:default => ""
 	  t.string		"content",						:null => false
-	  t.string		"type",							:null => false
+	  t.string		"mediatype",							:null => false
       t.timestamps
     end
   end
