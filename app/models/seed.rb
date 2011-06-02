@@ -1,4 +1,4 @@
 class Seed < ActiveRecord::Base
 	
-	has_many :seeds
+	has_many :comments
 end

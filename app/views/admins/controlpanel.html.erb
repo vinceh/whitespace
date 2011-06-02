@@ -9,12 +9,16 @@ YOU ARE LOGGED IN MY FRIEND
 <br/>
 <%= link_to "Logout", :action => :logout %> <br/>
 
------------------- <br/>
+<hr/>
 <% @seeds.each do |s| %>
 	
 	<b><%= s.title %></b> <br/>
-	<%= s.description %><br/>
-	<%= s.content %> <br/>
-	<%= s.mediatype %> <br/>
-	------------------ <br/>
+	Description: <%= s.description %><br/>
+	Media type: <%= s.mediatype %> <br/>
+	Is displaying: <%= s.display %> <br/>
+	<%= s.comments.count%> comments <br/>
+	<%= embed(s) %> <br/>
+	<%= image_tag s.thumbnail %> <br/>
+	<%= link_to 'Kill', {:controller => :seeds, :action => :delete, :id => s.id}, :confirm => 'Are you sure BOI?', :method => :delete %> <br/>
+<hr/>
 <% end %>

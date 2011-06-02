@@ -1,3 +1,13 @@
 Hai there
 
 <%= link_to "Login", :controller => :admins, :action => :login %>
+<hr/>
+<% @seeds.each do |s| %>
+	
+	<b><%= s.title %></b> <br/>
+	Description: <br/>
+	<%= embed(s) %> <br/>
+	<%= s.description %> <br/>
+	<%= image_tag s.thumbnail %> <br/>
+<% end %>
+<hr/>

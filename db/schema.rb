@@ -22,17 +22,19 @@ ActiveRecord::Schema.define(:version => 20110530224421) do
 
   create_table "comments", :force => true do |t|
     t.string   "content",    :default => "", :null => false
+    t.integer  "seed_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "seeds", :force => true do |t|
-    t.string   "title",       :default => ""
-    t.string   "description", :default => ""
-    t.string   "content",    	              :null => false
-    t.string   "mediatype",        	          :null => false
+    t.string   "title",                  :default => ""
+    t.column   "description", :text,     :default => ""
+    t.column   "thumbnail",   :text
+    t.column   "content",     :text,          				:null => false
+    t.string   "mediatype",        	          				:null => false
+    t.boolean  "display",	  :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
 end

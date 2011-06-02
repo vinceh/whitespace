@@ -7,7 +7,7 @@ Whitespace::Application.routes.draw do
 	match "admins/logout" => "admins#logout"
 	
 	match "seeds/new" => "seeds#new"
-	
+	match "seeds/delete/:id" => "seeds#delete"
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
