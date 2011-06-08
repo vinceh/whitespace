@@ -34,7 +34,21 @@ ActiveRecord::Schema.define(:version => 20110530224421) do
     t.column   "content",     :text,          				:null => false
     t.string   "mediatype",        	          				:null => false
     t.boolean  "display",	  :default => true
+    t.integer  "clicks",      :default => 0
+    t.integer  "views",       :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+  
+  create_table "archived_seeds", :force => true do |t|
+    t.string   "title",                  :default => ""
+    t.column   "description", :text,     :default => ""
+    t.column   "thumbnail",   :text
+    t.column   "content",     :text,          				:null => false
+    t.string   "mediatype",        	          				:null => false
+    t.integer  "clicks",      :default => 0
+    t.integer  "views",       :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"  
   end
 end

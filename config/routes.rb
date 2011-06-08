@@ -2,12 +2,16 @@ Whitespace::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
+	
 	match "admins/login" => "admins#login"
 	match "admins/controlpanel" => "admins#controlpanel"
 	match "admins/logout" => "admins#logout"
 	
 	match "seeds/new" => "seeds#new"
 	match "seeds/delete/:id" => "seeds#delete"
+	match "seeds/clicked/:id" => "seeds#clicked"
+	
+	match "main/clicked_setup" => "main#clicked_setup"
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action

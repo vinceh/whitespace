@@ -1,0 +1,19 @@
+<script type="text/javascript">
+	setInterval(function(){
+		
+		<% seed = Seed.find(2) %>
+		$("#seed2").append("<p>" + <%= seed.clicks.to_s%> + "</p>");
+		
+		<% getEminatingSeeds().each do |s| %>
+			var id = <%= "seed"+s.to_s%>;
+			//$(id).css("border", "1px solid gray")
+
+			// $(id).css("border", "1px solid red")
+			
+			var id = "#haro"
+			$(id).toggle();
+		<% end %>
+		//var id = "#haro";
+		//$(id).toggle();
+	},2000);
+</script>

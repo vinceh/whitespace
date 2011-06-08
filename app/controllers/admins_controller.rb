@@ -23,9 +23,8 @@ class AdminsController < ApplicationController
   
   def logout
   	
-  	session[:admin] = nil
+  	reset_session
   	redirect_to :controller => :main
-  	
   end
   
   def controlpanel
