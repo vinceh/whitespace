@@ -35,7 +35,7 @@ class SeedsController < ApplicationController
 	@seed = Seed.find(params[:id])
 	@seed.clicks = @seed.clicks + 1
 	@seed.save
-	
+
 	respond_to do |format|
 		# format.html {redirect_to :controller => :admins, :action => :controlpanel}
 		format.js
