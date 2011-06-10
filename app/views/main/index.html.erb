@@ -1,5 +1,6 @@
 Hai there
-<%= render :partial => "clicked_setup" %>
+<%= render :partial => "page_setup", :locals => {:seeds => @seeds} %>
+
 <%= link_to "Login", {:controller => :admins, :action => :login}, :id => "haro" %>
 
 <% if flash[:message] %>
@@ -13,7 +14,7 @@ Hai there
 	Description: <br/>
 	<%= embed(s) %> <br/>
 	<%= s.description %> <br/>
-	<%= image_tag s.thumbnail %> <br/>
+	<div id="thumbdiv<%=s.id.to_s%>"><%= image_tag s.thumbnail, :id => "thumbnailimg#{s.id.to_s}" %><div id="seedesc<%=s.id.to_s%>"></div></div>  <br/>
 	<%= link_to "Click", {:controller => :seeds, :action => :clicked, :id => s.id}, :remote => true %>
 	</div>
 <% end %>

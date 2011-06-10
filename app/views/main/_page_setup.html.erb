@@ -1,0 +1,60 @@
+<script type="text/javascript">
+
+	$(document).ready(function () {
+			
+		<% seeds.each do |s| %>
+	
+			var width = $("#thumbnailimg<%=s.id.to_s%>").width();
+		
+			$("#thumbdiv<%=s.id.to_s%>").css("display", "inline-block");
+			$("#thumbdiv<%=s.id.to_s%>").css("border", "5px solid #9e9e9e");
+			$("#thumbdiv<%=s.id.to_s%>").css("border-radius", "500px");
+			$("#thumbdiv<%=s.id.to_s%>").css("width", 300);
+			// $("#thumbdiv<%=s.id.to_s%>").css("height", 200);
+			$("#thumbdiv<%=s.id.to_s%>").css("overflow", "hidden");
+			$("#thumbnailimg<%=s.id.to_s%>").css("width", "300px");
+			
+			width = $("#thumbdiv<%=s.id.to_s%>").outerWidth();
+			
+			$("#seedesc<%=s.id.to_s%>").css("display", "inline-block");
+			$("#seedesc<%=s.id.to_s%>").css("background-color", "#9e9e9e");
+			$("#seedesc<%=s.id.to_s%>").css("width", width);
+			$("#seedesc<%=s.id.to_s%>").css("height", "150px");
+			$("#seedesc<%=s.id.to_s%>").css("z-index", -1);
+			
+			$("#thumbdiv<%=s.id.to_s%>").bind({
+				mouseenter: function(){
+					$(this).animate({
+						borderRightWidth: 200
+					}, 500);
+				},
+				mouseleave: function(){
+					$(this).animate({
+						borderRightWidth: 5
+					}, 500);
+				}
+			});
+			
+			$("#seedesc<%=s.id.to_s%>").bind({
+				mouseenter: function(){
+					$("#haro").toggle();
+				},
+				mouseleave: function(){
+		
+				}
+			});			
+			
+		<% end %>
+	});	
+
+	setInterval(function(){
+		$.ajax({
+        url: "/main/check",
+        type: "GET",
+        dataType: "script"
+    	});
+		//$.load('/main/check');
+		//var id = "#haro";
+		//$(id).toggle();
+	},3000);
+</script>
