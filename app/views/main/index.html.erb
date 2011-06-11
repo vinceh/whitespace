@@ -14,7 +14,8 @@ Hai there
 	Description: <br/>
 	<%= embed(s) %> <br/>
 	<%= s.description %> <br/>
-	<div id="thumbdiv<%=s.id.to_s%>"><%= image_tag s.thumbnail, :id => "thumbnailimg#{s.id.to_s}" %><div id="seedesc<%=s.id.to_s%>"></div></div>  <br/>
+	<div id="thumbdiv<%=s.id.to_s%>"><%= image_tag "rb.png", :id => "thumbnailimg#{s.id.to_s}" %></div> 
+	<div id="seedesc<%=s.id.to_s%>"></div> <br/>
 	<%= link_to "Click", {:controller => :seeds, :action => :clicked, :id => s.id}, :remote => true %>
 	</div>
 <% end %>
