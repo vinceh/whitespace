@@ -1,11 +1,87 @@
 <script type="text/javascript">
 
 	$(document).ready(function () {
-			
-		<% seeds.each do |s| %>
-	
-			var width = $("#thumbnailimg<%=s.id.to_s%>").width();
+   	
+		var inSeed = false;
 		
+		function expand(id) {
+
+			$("#thumbdiv"+id).mousemove(function(e){
+					$('#haro').html(e.pageX +', '+ e.pageY);
+			}); 
+				
+			$("#thumbdiv"+id).animate({
+				
+				borderRightWidth: "25px",
+				borderTopWidth: "25px",
+				borderLeftWidth: "25px",
+				borderBottomWidth: "25px",
+				
+			}, { duration: 500, queue: false });
+			
+			$("#seedesc"+id).animate({
+				width: "400px",
+			}, { duration: 500, queue: false });
+			
+			$("#seedcontainer"+id).animate({
+				marginTop: "-5px",
+				marginRight: "-5px",
+				marginBottom: "-5px",
+				marginLeft: "-5px",
+				
+				width: "570px",
+				height: "350px"
+			}, { duration: 500, queue: false });	
+		}
+		
+		function collapse(id) {
+
+			$("#thumbdiv"+id).animate({
+				
+				borderRightWidth: "20px",
+				borderTopWidth: "20px",
+				borderLeftWidth: "20px",
+				borderBottomWidth: "20px",
+				
+			}, { duration: 500, queue: false });
+			
+			$("#seedesc"+id).animate({
+				width: "1px",
+			}, { duration: 500, queue: false });
+			
+			$("#seedcontainer"+id).animate({
+				marginTop: "0px",
+				marginRight: "0px",
+				marginBottom: "0px",
+				marginLeft: "0px",
+				
+				width: "340px",
+				height: "340px"
+			}, { duration: 500, queue: false });	
+		}
+		
+		function isInCircle(center, diameter, mousePos) {
+			
+			return Math.sqrt(Math.pow(mousePos.pageX-center[0],2)+Math.pow(mousePos.pageY-center[1],2)) <= diameter/2;
+		}
+		
+		function isInSquare(center, width, height, mouse) {
+			
+			return (mouse.pageX >= center[0] && mouse.pageX <= center[0]+width) &&
+						(mouse.pageY <= center[1] && mouse.pageY >= center[1]-height);
+		}
+		
+		function calculateCentre(pos, width) {
+			
+			return [pos.left+width/2,pos.top+width/2];
+		}
+		
+		<% seeds.each do |s| %>
+		
+			$("#seedcontainer<%=s.id.to_s%>").css("display", "inline-block");
+
+			var width = $("#thumbnailimg<%=s.id.to_s%>").width();
+			
 			$("#thumbdiv<%=s.id.to_s%>").css("display", "inline-block");
 			$("#thumbdiv<%=s.id.to_s%>").css("border", "20px solid #9e9e9e");
 			$("#thumbdiv<%=s.id.to_s%>").css("border-radius", "500px");
@@ -14,11 +90,9 @@
 			
 			var pos = $("#thumbdiv<%=s.id.to_s%>").position();
 			
-			$("#thumbdiv<%=s.id.to_s%>").css("position", "absolute");
-			$("#thumbdiv<%=s.id.to_s%>").css("left", pos.left+800);
-			$("#thumbdiv<%=s.id.to_s%>").css("top", pos.top-300);
-			
-			$("#thumbnailimg<%=s.id.to_s%>").css("width", "300px");
+			$("#seedcontainer<%=s.id.to_s%>").css("position", "absolute");
+			$("#seedcontainer<%=s.id.to_s%>").css("left", pos.left+790);
+			$("#seedcontainer<%=s.id.to_s%>").css("top", pos.top-295);
 			
 			width = $("#thumbdiv<%=s.id.to_s%>").outerWidth();
 			pos = $("#thumbdiv<%=s.id.to_s%>").position();
@@ -32,55 +106,40 @@
 			$("#seedesc<%=s.id.to_s%>").css("height", width/2);
 			$("#seedesc<%=s.id.to_s%>").css("z-index", -1);
 			
-			$("#thumbdiv<%=s.id.to_s%>").bind({
+			$("#seedcontainer<%=s.id.to_s%>").bind({
+
 				mouseenter: function(){
-					$(this).animate({
-						borderRightWidth: "25px",
-						borderTopWidth: "25px",
-						borderLeftWidth: "25px",
-						borderBottomWidth: "25px",
-						
-						marginTop: "-5px",
-						marginRight: "-5px",
-						marginBottom: "-5px",
-						marginLeft: "-5px"
-					}, { duration: 500, queue: false });
 					
-					$("#seedesc<%=s.id.to_s%>").animate({
-						width: "400px",
-						marginTop: "-5px"
-					}, { duration: 500, queue: false });
+					var expanding = false;
+					
+					$("#seedcontainer<%=s.id.to_s%>").mousemove(function(e){
+						
+						pos = $("#seedcontainer<%=s.id.to_s%>").position();
+						width = $("#thumbdiv<%=s.id.to_s%>").outerWidth();
+						height = $("#seedesc<%=s.id.to_s%>").outerHeight();
+							
+						var center = calculateCentre(pos, width);
+							
+						if ( !expanding ) {
+							if ( isInCircle(center, width, e) || isInSquare(center, 400, height, e) ) {
+								expanding = true;
+								expand(<%=s.id.to_s%>);
+							}
+						}
+						else {
+							if ( !isInCircle(center, width, e) && !isInSquare(center, 400, height, e) ) {
+								expanding = false;
+								collapse(<%=s.id.to_s%>);
+							}
+						}
+					}); 	
 				},
 				mouseleave: function(){
-					$(this).animate({
-						borderRightWidth: "20px",
-						borderTopWidth: "20px",
-						borderLeftWidth: "20px",
-						borderBottomWidth: "20px",
-						
-						marginTop: "0px",
-						marginRight: "0px",
-						marginBottom: "0px",
-						marginLeft: "0px"
-					}, { duration: 500, queue: false });
 					
-					$("#seedesc<%=s.id.to_s%>").animate({
-						width: "1px",
-						marginTop: "-0px"
-					}, { duration: 500, queue: false });
+					collapse(<%=s.id.to_s%>);
 				}
-			});
-			
-			$("#seedesc<%=s.id.to_s%>").bind({
-				mouseenter: function(){
-			
-				},
-				mouseleave: function(){
-		
-				}
-			});			
-			
-		<% end %>
+			});	
+		<% end %>	
 	});	
 
 	setInterval(function(){
