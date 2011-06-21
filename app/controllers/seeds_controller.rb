@@ -36,9 +36,6 @@ class SeedsController < ApplicationController
 	@seed.clicks = @seed.clicks + 1
 	@seed.save
 
-	respond_to do |format|
-		# format.html {redirect_to :controller => :admins, :action => :controlpanel}
-		format.js
-	end
   end
 end
+

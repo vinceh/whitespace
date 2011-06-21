@@ -6,9 +6,9 @@
 		
 		function expand(id) {
 
-			$("#thumbdiv"+id).mousemove(function(e){
-					$('#haro').html(e.pageX +', '+ e.pageY);
-			}); 
+			//$("#thumbdiv"+id).mousemove(function(e){
+			//		$('#haro').html(e.pageX +', '+ e.pageY);
+			//}); 
 				
 			$("#thumbdiv"+id).animate({
 				
@@ -110,7 +110,25 @@
 
 				mouseenter: function(){
 					
+					
 					var expanding = false;
+					
+					$("#seedcontainer<%=s.id.to_s%>").click(function(e) {
+						
+						pos = $("#seedcontainer<%=s.id.to_s%>").position();
+						width = $("#thumbdiv<%=s.id.to_s%>").outerWidth();
+						height = $("#seedesc<%=s.id.to_s%>").outerHeight();
+						
+						var center = calculateCentre(pos, width);
+						
+						if ( isInCircle(center, width, e) || isInSquare(center, 400, height, e) ) {
+							$.ajax({
+						        url: "/main/detail/"+<%=s.id.to_s%>,
+						        type: "GET",
+						        dataType: "script"
+					    	});
+						}
+					});
 					
 					$("#seedcontainer<%=s.id.to_s%>").mousemove(function(e){
 						
@@ -122,12 +140,14 @@
 							
 						if ( !expanding ) {
 							if ( isInCircle(center, width, e) || isInSquare(center, 400, height, e) ) {
+								$("#seedcontainer<%=s.id.to_s%>").css("cursor", "pointer");
 								expanding = true;
 								expand(<%=s.id.to_s%>);
 							}
 						}
 						else {
 							if ( !isInCircle(center, width, e) && !isInSquare(center, 400, height, e) ) {
+								$("#seedcontainer<%=s.id.to_s%>").css("cursor", "auto");
 								expanding = false;
 								collapse(<%=s.id.to_s%>);
 							}
@@ -143,11 +163,11 @@
 	});	
 
 	setInterval(function(){
-		$.ajax({
-        url: "/main/check",
-        type: "GET",
-        dataType: "script"
-    	});
+		//$.ajax({
+       //url: "/main/check",
+        //type: "GET",
+        //dataType: "script"
+    	//});
 		//$.load('/main/check');
 		//var id = "#haro";
 		//$(id).toggle();

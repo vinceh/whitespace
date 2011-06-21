@@ -25,6 +25,15 @@ class MainController < ApplicationController
   	end
   end
   
+  def seed_detail
+  	  	
+  	@seed = Seed.find(params[:id])
+  	
+  	respond_to do |format|
+  		format.js { render "seeds/detail" }
+  	end
+  end
+  	
   private
   
   def set_seed_counts( seeds )
