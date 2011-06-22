@@ -1,1 +1,63 @@
-<b> haro there </b>
+<script type="text/javascript">
+	$(document).ready(function () {
+		
+		$("#comment_input").val("Write a comment...");
+		$("#comment_input").css("color", "#A0A0A0 ");
+			
+		$("#comment_input").bind({
+					
+			focusin: function() {
+				if ( $("#comment_input").val() == "Write a comment..." ) {
+					$("#comment_input").val("");
+					$("#comment_input").css("color", "#303030 ");
+				}
+				
+			},
+			
+			focusout: function() {
+				
+				if ( !$("#comment_input").val() ) {
+					$("#comment_input").val("Write a comment...");
+					$("#comment_input").css("color", "#A0A0A0 ");
+				}
+			}
+		});
+		
+		$("#comment_input").parent("form").bind("ajax:loading",function(e,data,status,xhr) {
+            $(this).find("input").attr("disabled",true);
+        });
+		
+		$("#close_seed").bind({
+			
+			click: function() {
+				$("#seed_detail_background").remove();
+			}
+		});
+		
+		
+	});
+</script>
+
+<div id="seed_detail_background">
+	<div id="transparent_layer">
+	</div>
+	<div id="seed_detail_container">
+		<div id="seed_detail_media">
+			<%= embed(seed) %>
+		</div>
+		<div id="seed_detail_panel">
+			<div id="close_seed">
+			</div>
+			
+			<h3><%= seed.title %></h3>
+			<div id="seed_detail_desc">
+			<p><%= seed.description.html_safe %></p>
+			<%= form_for @comment, :url => {:controller => :comments, :action => :create}, :remote => true do |f| -%>
+				<%= f.hidden_field :seed_id, :value => seed.id %>
+				<%= f.text_field :content, :id => "comment_input" %>
+			<% end -%>
+			</div>
+		</div>
+		
+	</div>
+</div>

@@ -91,8 +91,8 @@
 			var pos = $("#thumbdiv<%=s.id.to_s%>").position();
 			
 			$("#seedcontainer<%=s.id.to_s%>").css("position", "absolute");
-			$("#seedcontainer<%=s.id.to_s%>").css("left", pos.left+790);
-			$("#seedcontainer<%=s.id.to_s%>").css("top", pos.top-295);
+			$("#seedcontainer<%=s.id.to_s%>").css("left", pos.left+200);
+			$("#seedcontainer<%=s.id.to_s%>").css("top", pos.top+200);
 			
 			width = $("#thumbdiv<%=s.id.to_s%>").outerWidth();
 			pos = $("#thumbdiv<%=s.id.to_s%>").position();
@@ -108,27 +108,24 @@
 			
 			$("#seedcontainer<%=s.id.to_s%>").bind({
 
+				click: function(e) {
+					pos = $("#seedcontainer<%=s.id.to_s%>").position();
+					width = $("#thumbdiv<%=s.id.to_s%>").outerWidth();
+					height = $("#seedesc<%=s.id.to_s%>").outerHeight();
+					
+					var center = calculateCentre(pos, width);
+					
+					if ( isInCircle(center, width, e) || isInSquare(center, 400, height, e) ) {
+						$.ajax({
+					        url: "/main/detail/"+<%=s.id.to_s%>,
+					        type: "GET",
+					        dataType: "script"
+				    	});
+					}
+				},
 				mouseenter: function(){
 					
-					
 					var expanding = false;
-					
-					$("#seedcontainer<%=s.id.to_s%>").click(function(e) {
-						
-						pos = $("#seedcontainer<%=s.id.to_s%>").position();
-						width = $("#thumbdiv<%=s.id.to_s%>").outerWidth();
-						height = $("#seedesc<%=s.id.to_s%>").outerHeight();
-						
-						var center = calculateCentre(pos, width);
-						
-						if ( isInCircle(center, width, e) || isInSquare(center, 400, height, e) ) {
-							$.ajax({
-						        url: "/main/detail/"+<%=s.id.to_s%>,
-						        type: "GET",
-						        dataType: "script"
-					    	});
-						}
-					});
 					
 					$("#seedcontainer<%=s.id.to_s%>").mousemove(function(e){
 						

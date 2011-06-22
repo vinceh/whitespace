@@ -15,6 +15,8 @@ Whitespace::Application.routes.draw do
 	match "main/clicked_setup" => "main#clicked_setup"
 	match "main/check" => "main#check"
 	match "main/detail/:id" => "main#seed_detail"
+	
+	match "comments/create" => "comments#create"
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action

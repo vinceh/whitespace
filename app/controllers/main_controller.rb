@@ -3,6 +3,7 @@ class MainController < ApplicationController
   
   def index
   	@seeds = Seed.all
+  	@comment = Comment.new
   	
   	set_seed_counts(@seeds)
   end
@@ -25,9 +26,10 @@ class MainController < ApplicationController
   	end
   end
   
-  def seed_detail
-  	  	
+  def seed_detail  	
+  	
   	@seed = Seed.find(params[:id])
+  	@comment = Comment.new
   	
   	respond_to do |format|
   		format.js { render "seeds/detail" }

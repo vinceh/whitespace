@@ -5,20 +5,14 @@ Hai there
 
 <% if flash[:message] %>
 <%= flash[:message] %>
+
 <br/>
 <% end %>	
-<hr/>
 <% @seeds.each do |s| %>
-	<div id=<%= "seed"+s.id.to_s%>>
-	<b><%= s.title %></b> <br/>
-	Description: <br/>
-	<%= embed(s) %> <br/>
-	<%= s.description %> <br/>
 	<div id="seedcontainer<%=s.id.to_s%>">
 		<div id="thumbdiv<%=s.id.to_s%>"><%= image_tag "rb.png", :id => "thumbnailimg#{s.id.to_s}" %></div> 
 		<div id="seedesc<%=s.id.to_s%>"></div>
 	</div>
 	<%= link_to "Click", {:controller => :seeds, :action => :clicked, :id => s.id}, :remote => true %>
-	</div>
+	
 <% end %>
-<hr/>
