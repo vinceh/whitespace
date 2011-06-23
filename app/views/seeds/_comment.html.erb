@@ -1,0 +1,4 @@
+<div id="comment<%= comment.id.to_s %>" class="comment">
+	<div><%= comment.content %></div>
+	<span class="comment_date"><%= time_ago_in_words(comment.created_at) %> ago</span>
+</div>
