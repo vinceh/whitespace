@@ -87,11 +87,27 @@
 	outline: 0px;
 }
 
+#comments_container {
+	font-size: 11px;
+	font-family: Arial;
+}
+
+.comment {
+	border-bottom: 1px solid #a8a8a8;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.comment_date {
+	font-size: 8px;
+	color: #404040;
+}
+
 #seed_detail_desc {
 	
-	width: 100%;
-	height: 83%;
-	
+	width: 391px;
+	height: 84.5%;
+	padding-right: 15px;
 }
 
 #seed_detail_panel {
@@ -99,15 +115,15 @@
 	position: relative;
 	top: -305px;
 	left: 410px;
-	width: 370px;
-	height: 490px;
+	width: 405px;
+	height: 495px;
 	background-color: #c7f0e8;
 	border-top-right-radius: 10px;
 	border-bottom-right-radius: 10px;
 	border-bottom-left-radius: 10px;
 	padding-top: 20px;
 	padding-left: 20px;
-	padding-right: 60px;
+	padding-right: 26px;
 	color: #303030;
 }
 

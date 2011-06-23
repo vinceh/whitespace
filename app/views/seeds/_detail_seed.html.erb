@@ -23,8 +23,16 @@
 			}
 		});
 		
-		$("#comment_input").parent("form").bind("ajax:loading",function(e,data,status,xhr) {
-            $(this).find("input").attr("disabled",true);
+		$("#comment_input").parent("form").bind("ajax:beforeSend",function(e,data,status,xhr) {
+            $("#comment_input").attr("disabled",true);
+            $("#comment_input").val("");
+        });
+        
+        $("#comment_input").parent("form").bind("ajax:success",function(e,data,status,xhr) {
+            $("#comment_input").attr("disabled",false);
+            
+            var jsp = $("#seed_detail_desc").data('jsp');
+            jsp.reinitialise();
         });
 		
 		$("#close_seed").bind({
@@ -34,7 +42,14 @@
 			}
 		});
 		
+		$("#transparent_layer").bind({
+			
+			click: function() {
+				$("#seed_detail_background").remove();
+			}
+		});
 		
+		$("#seed_detail_desc").jScrollPane();
 	});
 </script>
 
@@ -51,13 +66,18 @@
 			
 			<h3><%= seed.title %></h3>
 			<div id="seed_detail_desc">
-			<p><%= seed.description.html_safe %></p>
-			<%= form_for @comment, :url => {:controller => :comments, :action => :create}, :remote => true do |f| -%>
-				<%= f.hidden_field :seed_id, :value => seed.id %>
-				<%= f.text_field :content, :id => "comment_input" %>
-			<% end -%>
+				<p><%= seed.description.html_safe %></p>
+				<%= form_for @comment, :url => {:controller => :comments, :action => :create}, :remote => true do |f| -%>
+					<%= f.hidden_field :seed_id, :value => seed.id %>
+					<%= f.text_field :content, :id => "comment_input" %>
+				<% end -%>
+				<div id="comments_container">
+					
+					<% @comments.each do |comment| %>
+						<%= render :partial => "seeds/comment", :locals => {:comment => comment} %>
+					<% end %>
+				</div>
 			</div>
 		</div>
-		
 	</div>
 </div>

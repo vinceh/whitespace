@@ -1,0 +1,1 @@
+$("#comments_container").prepend("<%= escape_javascript(render(:partial=>"seeds/comment", :locals=>{:comment => @comment}))%>");

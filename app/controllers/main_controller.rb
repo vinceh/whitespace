@@ -30,6 +30,8 @@ class MainController < ApplicationController
   	
   	@seed = Seed.find(params[:id])
   	@comment = Comment.new
+  	@comments = Comment.find_all_by_seed_id(params[:id])
+  	@comments = @comments.reverse
   	
   	respond_to do |format|
   		format.js { render "seeds/detail" }
