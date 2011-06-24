@@ -29,13 +29,5 @@ class SeedsController < ApplicationController
 		redirect_to :controller => :admins, :action => :controlpanel
 	end
   end
-  
-  def clicked
-
-	@seed = Seed.find(params[:id])
-	@seed.clicks = @seed.clicks + 1
-	@seed.save
-
-  end
 end
 

@@ -60,7 +60,7 @@
 	left: 0px;
 	width: 400px;
 	height: 285px;
-	background-color: #c7f0e8;
+	background-color: #d0f0e5;
 	border-top-left-radius: 10px;
 	border-bottom-left-radius: 10px;
 	padding-left: 20px;
@@ -72,6 +72,37 @@
 	margin: 9px;
 }
 
+#seed_desc {
+	
+	margin-bottom: 20px;
+}
+
+#feed {
+	padding: 8px 2px;
+	background: white;
+	border-radius: 5px;
+	margin-right: 15px;
+}
+
+#feed:hover {
+	background: #3399CC;
+	cursor: pointer;
+}
+
+#fb {
+	border-radius: 5px;
+}
+
+#fb img {
+	width: 34px;
+	margin-bottom: -11px;
+}
+
+
+#feed img {
+	margin-bottom: -7px;
+	margin-left: 3px;
+}
 #comment_input {
 	width: 97%;
 	border-top-width: 0px;
@@ -110,6 +141,11 @@
 	padding-right: 15px;
 }
 
+#seed_detail_desc:focus {
+	
+	outline: none;
+}
+
 #seed_detail_panel {
 	
 	position: relative;
@@ -117,7 +153,7 @@
 	left: 410px;
 	width: 405px;
 	height: 495px;
-	background-color: #c7f0e8;
+	background-color: #d0f0e5;
 	border-top-right-radius: 10px;
 	border-bottom-right-radius: 10px;
 	border-bottom-left-radius: 10px;

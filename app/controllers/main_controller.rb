@@ -38,6 +38,17 @@ class MainController < ApplicationController
   	end
   end
   	
+  def feed
+  	
+  	@seed = Seed.find(params[:id])
+  	@seed.clicks = @seed.clicks + 1
+  	@seed.save
+  	
+  	respond_to do |format|
+  		format.js { render "seeds/fed" }
+  	end
+  end
+  	
   private
   
   def set_seed_counts( seeds )

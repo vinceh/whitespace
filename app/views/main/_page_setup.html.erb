@@ -79,7 +79,8 @@
 		<% seeds.each do |s| %>
 		
 			$("#seedcontainer<%=s.id.to_s%>").css("display", "inline-block");
-
+			$("#seedcontainer<%=s.id.to_s%>").css("overflow", "visible");
+			
 			var width = $("#thumbnailimg<%=s.id.to_s%>").width();
 			
 			$("#thumbdiv<%=s.id.to_s%>").css("display", "inline-block");
@@ -105,6 +106,18 @@
 			$("#seedesc<%=s.id.to_s%>").css("width", 1);
 			$("#seedesc<%=s.id.to_s%>").css("height", width/2);
 			$("#seedesc<%=s.id.to_s%>").css("z-index", -1);
+			
+			var height = $("#thumbdiv<%=s.id.to_s%>").outerHeight();
+			
+			$("#pulse<%=s.id.to_s%>").css("position", "absolute");
+			$("#pulse<%=s.id.to_s%>").css("left", pos.left+(width/2));
+			$("#pulse<%=s.id.to_s%>").css("top", pos.top+(height/2));
+			$("#pulse<%=s.id.to_s%>").css("width", 1);
+			$("#pulse<%=s.id.to_s%>").css("height", 1);
+			$("#pulse<%=s.id.to_s%>").css("z-index", -1);
+			$("#pulse<%=s.id.to_s%>").css("border-radius", 9999);
+			$("#pulse<%=s.id.to_s%>").css("opacity", 0.5);
+			$("#pulse<%=s.id.to_s%>").css("border", "2px solid gray");
 			
 			$("#seedcontainer<%=s.id.to_s%>").bind({
 
@@ -160,11 +173,11 @@
 	});	
 
 	setInterval(function(){
-		//$.ajax({
-       //url: "/main/check",
-        //type: "GET",
-        //dataType: "script"
-    	//});
+		$.ajax({
+	        url: "/main/check",
+	        type: "GET",
+	        dataType: "script"
+    	});
 		//$.load('/main/check');
 		//var id = "#haro";
 		//$(id).toggle();

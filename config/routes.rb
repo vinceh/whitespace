@@ -15,6 +15,7 @@ Whitespace::Application.routes.draw do
 	match "main/clicked_setup" => "main#clicked_setup"
 	match "main/check" => "main#check"
 	match "main/detail/:id" => "main#seed_detail"
+	match "main/feed/:id" => "main#feed"
 	
 	match "comments/create" => "comments#create"
   # Sample of regular route:

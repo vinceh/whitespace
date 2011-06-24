@@ -3,7 +3,19 @@
 		
 		$("#comment_input").val("Write a comment...");
 		$("#comment_input").css("color", "#A0A0A0 ");
+		$("#seedcontainer<%=seed.id.to_s%>").css("overflow", "visible");
 			
+		$("#feed").bind({
+			
+			click: function() {
+				$.ajax({
+			        url: "/main/feed/"+<%=seed.id.to_s%>,
+			        type: "GET",
+			        dataType: "script"
+		    	});
+			}
+		});
+		
 		$("#comment_input").bind({
 					
 			focusin: function() {
@@ -66,11 +78,21 @@
 			
 			<h3><%= seed.title %></h3>
 			<div id="seed_detail_desc">
-				<p><%= seed.description.html_safe %></p>
+				<p id="seed_desc"><%= seed.description.html_safe %></p>
+				
+				<span id="feed">
+					<img src="images/feed.png"></img>
+				</span>
+				
+				<span id="fb">
+				<img src="images/fb1.png"></img>
+				</span>
+				
 				<%= form_for @comment, :url => {:controller => :comments, :action => :create}, :remote => true do |f| -%>
 					<%= f.hidden_field :seed_id, :value => seed.id %>
 					<%= f.text_field :content, :id => "comment_input" %>
 				<% end -%>
+				
 				<div id="comments_container">
 					
 					<% @comments.each do |comment| %>

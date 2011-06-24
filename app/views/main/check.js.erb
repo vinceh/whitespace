@@ -1,8 +1,21 @@
-<% @seeds.each do |s| %>
+<% @seeds.each do |sid| %>
+	
+ 	$("#pulse<%=sid.to_s%>").animate({
+ 		width: "500px",
+    	height: "500px",
+		marginTop: "-250px",
+		marginLeft: "-250px",
+		opacity: 0,
 		
-	$(<%= "seed"+s.to_s %>).animate({
-    	opacity: 0,
- 	 	}, 75).animate({
-    		opacity: 1,
- 	 		}, 75);
+	}, { 
+		duration: 800, 
+		queue: false,
+		complete: function () {
+			$("#pulse<%=sid.to_s%>").css("width", "1px");
+			$("#pulse<%=sid.to_s%>").css("height", "1px");
+			$("#pulse<%=sid.to_s%>").css("opacity", "0.7");
+			$("#pulse<%=sid.to_s%>").css("margin", "0px");
+			$("#seedcontainer<%=sid.to_s%>").css("overflow", "visible");
+		}
+	});
 <% end %>
