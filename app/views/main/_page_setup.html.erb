@@ -9,6 +9,9 @@
 			//$("#thumbdiv"+id).mousemove(function(e){
 			//		$('#haro').html(e.pageX +', '+ e.pageY);
 			//}); 
+			var outerWidth = $("#thumbnailimg"+id).outerWidth();
+			var outerHeight = $("#thumbnailimg"+id).outerWidth();
+			var descBox = outerWidth+50;
 				
 			$("#thumbdiv"+id).animate({
 				
@@ -20,7 +23,10 @@
 			}, { duration: 500, queue: false });
 			
 			$("#seedesc"+id).animate({
-				width: "400px",
+				
+				width: descBox+"px",
+				height: (descBox/2)+5+"px",
+				paddingLeft: (descBox/2)+10+"px",
 			}, { duration: 500, queue: false });
 			
 			$("#seedcontainer"+id).animate({
@@ -29,13 +35,18 @@
 				marginBottom: "-5px",
 				marginLeft: "-5px",
 				
-				width: "570px",
-				height: "350px"
+				width: (descBox*2)+"px",
+				height: outerHeight+50+"px"
 			}, { duration: 500, queue: false });	
 		}
 		
 		function collapse(id) {
 
+			var outerWidth = $("#thumbnailimg"+id).outerWidth();
+			var outerHeight = $("#thumbnailimg"+id).outerWidth();
+			var descBox = outerWidth+40;
+			
+			
 			$("#thumbdiv"+id).animate({
 				
 				borderRightWidth: "20px",
@@ -47,6 +58,8 @@
 			
 			$("#seedesc"+id).animate({
 				width: "1px",
+				height: (descBox/2)-10+"px",
+				paddingLeft: "0px",
 			}, { duration: 500, queue: false });
 			
 			$("#seedcontainer"+id).animate({
@@ -55,8 +68,8 @@
 				marginBottom: "0px",
 				marginLeft: "0px",
 				
-				width: "340px",
-				height: "340px"
+				width: descBox+"px",
+				height: descBox+"px"
 			}, { duration: 500, queue: false });	
 		}
 		
@@ -84,7 +97,7 @@
 			var width = $("#thumbnailimg<%=s.id.to_s%>").width();
 			
 			$("#thumbdiv<%=s.id.to_s%>").css("display", "inline-block");
-			$("#thumbdiv<%=s.id.to_s%>").css("border", "20px solid #9e9e9e");
+			$("#thumbdiv<%=s.id.to_s%>").css("border", "20px solid #fcf5aa");
 			$("#thumbdiv<%=s.id.to_s%>").css("border-radius", "500px");
 			$("#thumbdiv<%=s.id.to_s%>").css("width", 300);
 			$("#thumbdiv<%=s.id.to_s%>").css("height", 300);
@@ -102,9 +115,10 @@
 			$("#seedesc<%=s.id.to_s%>").css("position", "absolute");
 			$("#seedesc<%=s.id.to_s%>").css("left", pos.left+(width/2));
 			$("#seedesc<%=s.id.to_s%>").css("top", pos.top);
-			$("#seedesc<%=s.id.to_s%>").css("background-color", "#9e9e9e");
+			$("#seedesc<%=s.id.to_s%>").css("background-color", "#fcf5aa");
 			$("#seedesc<%=s.id.to_s%>").css("width", 1);
 			$("#seedesc<%=s.id.to_s%>").css("height", width/2);
+			$("#seedesc<%=s.id.to_s%>").css("border-radius", "10px");
 			$("#seedesc<%=s.id.to_s%>").css("z-index", -1);
 			
 			var height = $("#thumbdiv<%=s.id.to_s%>").outerHeight();
@@ -128,7 +142,7 @@
 					
 					var center = calculateCentre(pos, width);
 					
-					if ( isInCircle(center, width, e) || isInSquare(center, 400, height, e) ) {
+					if ( isInCircle(center, width, e) || isInSquare(center, width+(width/2), height, e) ) {
 						$.ajax({
 					        url: "/main/detail/"+<%=s.id.to_s%>,
 					        type: "GET",
@@ -149,14 +163,14 @@
 						var center = calculateCentre(pos, width);
 							
 						if ( !expanding ) {
-							if ( isInCircle(center, width, e) || isInSquare(center, 400, height, e) ) {
+							if ( isInCircle(center, width, e) || isInSquare(center, width+(width/2), height, e) ) {
 								$("#seedcontainer<%=s.id.to_s%>").css("cursor", "pointer");
 								expanding = true;
 								expand(<%=s.id.to_s%>);
 							}
 						}
 						else {
-							if ( !isInCircle(center, width, e) && !isInSquare(center, 400, height, e) ) {
+							if ( !isInCircle(center, width, e) && !isInSquare(center, width+(width/2), height, e) ) {
 								$("#seedcontainer<%=s.id.to_s%>").css("cursor", "auto");
 								expanding = false;
 								collapse(<%=s.id.to_s%>);

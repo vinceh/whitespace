@@ -12,10 +12,24 @@
 
 .seedesc {
 	
-	display: inline-block;
-	height: 100px;
-	width: 200px;
+	overflow: hidden;
+	font-family: Arial;
 }
+
+.seedesc h3 {
+	font-size: 18px;
+}
+
+.seedesc p {
+	font-size: 12px;
+}
+
+.seedescp {
+	width: 95%;
+	height: 50%;
+	overflow: hidden;
+}
+
 .thumbnailimg {
 
 	width: 300px;
@@ -177,7 +191,6 @@
 #close_seed:hover {
 	
 	cursor: pointer;
-	background-image: url('../images/x_button_hover.png');
 }
 
 #seed_detail_panel h3 {
