@@ -133,6 +133,9 @@
 			$("#pulse<%=s.id.to_s%>").css("opacity", 0.5);
 			$("#pulse<%=s.id.to_s%>").css("border", "2px solid gray");
 			
+			$("#seedescwrapper<%=s.id.to_s%>").css("width", width);
+			$("#seedescwrapper<%=s.id.to_s%>").css("height", height/2-20);
+			
 			$("#seedcontainer<%=s.id.to_s%>").bind({
 
 				click: function(e) {
@@ -161,16 +164,17 @@
 						height = $("#seedesc<%=s.id.to_s%>").outerHeight();
 							
 						var center = calculateCentre(pos, width);
+						var descWidth = $("#seedesc<%=s.id.to_s%>").outerWidth();
 							
 						if ( !expanding ) {
-							if ( isInCircle(center, width, e) || isInSquare(center, width+(width/2), height, e) ) {
+							if ( isInCircle(center, width, e) || isInSquare(center, descWidth+(descWidth/2), height, e) ) {
 								$("#seedcontainer<%=s.id.to_s%>").css("cursor", "pointer");
 								expanding = true;
 								expand(<%=s.id.to_s%>);
 							}
 						}
 						else {
-							if ( !isInCircle(center, width, e) && !isInSquare(center, width+(width/2), height, e) ) {
+							if ( !isInCircle(center, width, e) && !isInSquare(center, descWidth+(descWidth/2), height, e) ) {
 								$("#seedcontainer<%=s.id.to_s%>").css("cursor", "auto");
 								expanding = false;
 								collapse(<%=s.id.to_s%>);
